@@ -188,17 +188,17 @@ ul {
 }
 
 #section1 {
-    background-image: url(../images/background-hero.jpg);
+    background-image: url("../images/background-hero.jpg");
 }
 
 #section2 {
-    background-image: url(../images/background-hero2.jpg);
+    background-image: url("../images/background-hero2.jpg");
     /* Mengatur agar gambar dimulai dari atas, sehingga bagian atas tidak terpotong */
     background-position: top center;
 }
 
 #section3 {
-    background-image: url(../images/background-hero3.jpg);
+    background-image: url("../images/background-hero3.jpg");
     /* Mengatur agar gambar dimulai dari atas, sehingga bagian atas tidak terpotong */
     background-position: top center;
 }
@@ -390,7 +390,7 @@ h4 {
     margin: 40px auto; /* Memberi jarak 40px atas-bawah & menengahkan kanan-kiri */
 } 
 .hero-section2 {
-    background-image: url(../images/background-hero.jpg);
+    background-image: url("../images/background-hero.jpg");
     height: 70vh;
     background-size: cover; /* Membuat gambar menutupi seluruh area section */
     background-position: center; /* Memposisikan gambar di tengah */
