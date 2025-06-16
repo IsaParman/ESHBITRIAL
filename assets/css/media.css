@@ -1,0 +1,255 @@
+/* =============================================== */
+/* CSS UNTUK RESPONSIVE & HAMBURGER MENU (MOBILE)  */
+/* =============================================== */
+
+/* Tablet Besar & Desktop Kecil */
+@media (max-width: 1200px) {
+    .stats-container {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+    }
+    .alur-maklon .steps-container {
+        gap: 20px;
+    }
+    /* Sembunyikan panah di antara langkah-langkah alur maklon */
+    .step:not(:last-child)::after,
+    .steps-container.reversed .step:not(:last-child)::before {
+        content: none;
+    }
+}
+
+/* Tablet (Portrait) */
+@media (max-width: 992px) {
+    .navbar {
+        padding: 0 1.5rem;
+    }
+
+    .hero-section {
+        padding: 50px;
+        justify-content: center;
+        text-align: center;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        text-align: center;
+    }
+
+    .hero-content h1 {
+        font-size: 3rem;
+    }
+
+    .hero-button {
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 80px;
+    }
+    
+    .features-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+    }
+
+    .alur-maklon .steps-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .alur-maklon .step {
+        width: 80%;
+    }
+
+    .wujudkan-brand .hero-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .certifications-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .footer-content {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+    }
+
+    /* Halaman Profile */
+    .about-us-section {
+        justify-content: center;
+        text-align: center;
+        padding: 30px;
+    }
+    .mission-grid {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+    
+    /* Halaman Kontak */
+    .content-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 30px;
+    }
+    .left-column, .right-column {
+        flex-basis: 100%;
+        padding-right: 0;
+        width: 100%;
+    }
+    .left-column {
+        text-align: center;
+    }
+}
+
+
+/* Smartphone (Landscape & Portrait) */
+@media (max-width: 768px) {
+    /* 1. Tampilkan ikon hamburger */
+    .hamburger {
+        display: block; /* Munculkan ikon hamburger di layar kecil */
+        z-index: 1001; /* Pastikan di atas menu mobile */
+    }
+
+    /* 2. Sembunyikan menu navigasi dan elemen kanan di header */
+    .nav-menu, .nav-right {
+        display: none;
+    }
+
+    /* 3. Atur posisi dan tampilan untuk menu mobile */
+    .nav-group-right {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        width: 70%;
+        height: 100vh;
+        background-color: #1e633f;
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        transition: right 0.4s ease-in-out;
+        z-index: 1000;
+    }
+
+    /* 4. Tampilkan menu saat kelas '.active' ditambahkan oleh JavaScript */
+    .nav-group-right.active {
+        right: 0;
+    }
+
+    /* 5. Atur ulang tampilan menu dan link di dalamnya */
+    .nav-group-right .nav-menu {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 2rem;
+    }
+
+    .nav-group-right .nav-menu a {
+        font-size: 1.2rem;
+    }
+
+    /* 6. Atur ulang tampilan elemen kanan (search & language) di menu mobile */
+    .nav-group-right .nav-right {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+
+    /* Tambahan Aturan Responsif Lainnya */
+    .hero-content h1 {
+        font-size: 2.5rem;
+        line-height: 1.2;
+    }
+    
+    .hero-content p, .hero-content h4 {
+        font-size: 1rem;
+    }
+
+    .hero-button {
+        padding: 8px 24px;
+        font-size: 0.9rem;
+        bottom: 60px;
+    }
+    
+    .stats-grid {
+        flex-direction: column;
+        gap: 20px;
+    }
+    .stat-item .number {
+        font-size: 40px;
+    }
+     .stat-item .label {
+        font-size: 14px;
+    }
+
+    .hero-content2 h1 {
+        font-size: 2rem;
+    }
+     .hero-content2 p {
+        font-size: 1rem;
+    }
+
+    .certifications-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .right-column .info-box {
+        width: 100%;
+        box-sizing: border-box;
+    }
+}
+
+/* Smartphone Kecil */
+@media (max-width: 576px) {
+    .navbar {
+        height: 80px;
+    }
+    .logo img {
+        height: 50px;
+    }
+    
+    .hero-section {
+        padding: 20px;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .title-background, .title-background2 {
+        font-size: 32px;
+    }
+    
+    .company-info .company-name {
+        font-size: 22px;
+    }
+    .company-info .trust-text {
+        font-size: 18px;
+    }
+
+    .section-title, .main-title, .section-title2, .kontak-body .main-title {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+    }
+
+    .text-column h1, .get-in-touch-title {
+        font-size: 2rem;
+    }
+
+     .text-column p {
+        font-size: 1rem;
+    }
+
+    .value-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        padding: 0 20px 20px 20px;
+    }
+
+    .map-container iframe {
+        height: 300px;
+    }
+}
