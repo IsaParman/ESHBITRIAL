@@ -57,11 +57,18 @@ document.addEventListener("DOMContentLoaded", function () {
    * Fungsi ini harus dipanggil SETELAH header dimuat.
    */
   const setActiveLink = () => {
-    const currentPage =
-      window.location.pathname.split("/").pop() || "index.html";
+    // Mengambil path URL saat ini, contoh: "/index.html" atau "/tentang.html"
+    let currentPagePath = window.location.pathname;
+
+    // Jika path-nya hanya "/", anggap itu adalah halaman utama (index.html)
+    if (currentPagePath === "/") {
+      currentPagePath = "/index.html";
+    }
+
     const navLinks = document.querySelectorAll(".nav-menu a");
     navLinks.forEach((link) => {
-      if (link.getAttribute("href") === currentPage) {
+      // Membandingkan path URL saat ini dengan nilai href pada link secara langsung
+      if (link.getAttribute("href") === currentPagePath) {
         link.classList.add("active");
       }
     });
@@ -69,12 +76,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Eksekusi pemuatan komponen
   // Pertama muat header, SETELAH itu jalankan fungsi yang bergantung padanya.
-  loadHTML("/partials/header.html", "header-container").then(() => {
+  loadHTML("partials/header.html", "header-container").then(() => {
     setupHamburger();
     setActiveLink();
   });
   // Muat footer secara paralel.
-  loadHTML("/partials/footer.html", "footer-container");
+  loadHTML("partials/footer.html", "footer-container");
 
   // =================================================================
   // BAGIAN 2: SLIDER GAMBAR
@@ -138,11 +145,46 @@ document.addEventListener("DOMContentLoaded", function () {
       scrollTopBtn.style.display = isScrolled ? "block" : "none";
     };
 
+    // SOLUSI FINAL: Menggabungkan Animasi Mulus dengan Cek Aksesibilitas
     const smoothScrollToTop = () => {
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      // Cek apakah pengguna meminta untuk mengurangi gerakan/animasi
+      const prefersReducedMotion = window.matchMedia(
+        "(prefers-reduced-motion: reduce)"
+      ).matches;
+
+      // Jika pengguna meminta untuk mengurangi gerakan, lakukan scroll instan
+      if (prefersReducedMotion) {
+        window.scrollTo(0, 0);
+        return; // Hentikan fungsi di sini
+      }
+
+      // Jika tidak, jalankan animasi yang mulus (kode dari solusi sebelumnya)
+      const startY = window.pageYOffset;
+      const duration = 800;
+      let startTime = null;
+
+      const easeInOutQuad = (t, b, c, d) => {
+        t /= d / 2;
+        if (t < 1) return (c / 2) * t * t + b;
+        t--;
+        return (-c / 2) * (t * (t - 2) - 1) + b;
+      };
+
+      const animation = (currentTime) => {
+        if (startTime === null) {
+          startTime = currentTime;
+        }
+        const timeElapsed = currentTime - startTime;
+        const newY = easeInOutQuad(timeElapsed, startY, -startY, duration);
+        window.scrollTo(0, newY);
+        if (timeElapsed < duration) {
+          requestAnimationFrame(animation);
+        } else {
+          window.scrollTo(0, 0);
+        }
+      };
+
+      requestAnimationFrame(animation);
     };
 
     window.addEventListener("scroll", handleScroll);
