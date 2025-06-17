@@ -384,7 +384,7 @@ h4 {
   margin: 40px auto; /* Memberi jarak 40px atas-bawah & menengahkan kanan-kiri */
 }
 .hero-section2 {
-  background-image: url(/assets/images/background-hero.jpg);
+  background-image: url(assets/images/background-hero.jpg);
   height: 70vh;
   background-size: cover; /* Membuat gambar menutupi seluruh area section */
   background-position: center; /* Memposisikan gambar di tengah */
