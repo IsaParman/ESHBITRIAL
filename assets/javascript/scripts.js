@@ -69,12 +69,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
   // Eksekusi pemuatan komponen
   // Pertama muat header, SETELAH itu jalankan fungsi yang bergantung padanya.
-  loadHTML("partials/header.html", "header-container").then(() => {
+  loadHTML("/partials/header.html", "header-container").then(() => {
     setupHamburger();
     setActiveLink();
   });
   // Muat footer secara paralel.
-  loadHTML("partials/footer.html", "footer-container");
+  loadHTML("/partials/footer.html", "footer-container");
 
   // =================================================================
   // BAGIAN 2: SLIDER GAMBAR
