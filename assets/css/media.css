@@ -1,124 +1,23 @@
 /* =============================================== */
-/* CSS UNTUK RESPONSIVE & HAMBURGER MENU (MOBILE)  */
+/* MEDIA QUERIES UNTUK TAMPILAN RESPONSIVE */
 /* =============================================== */
 
-/* Tablet Besar & Desktop Kecil */
-@media (max-width: 1200px) {
-  .stats-container {
-    flex-direction: column;
-    gap: 20px;
-    text-align: center;
-  }
-  .alur-maklon .steps-container {
-    gap: 20px;
-  }
-  /* Sembunyikan panah di antara langkah-langkah alur maklon */
-  .step:not(:last-child)::after,
-  .steps-container.reversed .step:not(:last-child)::before {
-    content: none;
-  }
-}
-
-/* Tablet (Portrait) */
-@media (max-width: 992px) {
-  .navbar {
-    padding: 0 1.5rem;
+/* =============================================== */
+/* TAMPILAN PONSEL (Hingga 767px) */
+/* =============================================== */
+@media (max-width: 767px) {
+  /* Penyesuaian Global */
+  body {
+    font-size: 14px;
   }
 
-  .hero-section {
-    padding: 50px;
-    justify-content: center;
-    text-align: center;
-  }
+  /* Navbar */
 
-  .hero-content {
-    max-width: 100%;
-    text-align: center;
-  }
-
-  .hero-content h1 {
-    font-size: 3rem;
-  }
-
-  .hero-button {
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 80px;
-  }
-
-  .features-grid {
-    grid-template-columns: 1fr;
-    gap: 30px;
-  }
-
-  .alur-maklon .steps-container {
-    flex-direction: column;
-    align-items: center;
-    gap: 40px;
-  }
-
-  .alur-maklon .step {
-    width: 80%;
-  }
-
-  .wujudkan-brand .hero-container {
-    flex-direction: column;
-    text-align: center;
-  }
-
-  .certifications-grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .footer-content {
-    flex-direction: column;
-    text-align: center;
-    align-items: center;
-  }
-
-  /* Halaman Profile */
-  .about-us-section {
-    justify-content: center;
-    text-align: center;
-    padding: 30px;
-  }
-  .mission-grid {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  /* Halaman Kontak */
-  .content-wrapper {
-    flex-direction: column;
-    align-items: center;
-    gap: 30px;
-  }
-  .left-column,
-  .right-column {
-    flex-basis: 100%;
-    padding-right: 0;
-    width: 100%;
-  }
-  .left-column {
-    text-align: center;
-  }
-}
-
-/* Smartphone (Landscape & Portrait) */
-@media (max-width: 768px) {
-  /* 1. Tampilkan ikon hamburger */
   .hamburger {
-    display: block; /* Munculkan ikon hamburger di layar kecil */
-    z-index: 1001; /* Pastikan di atas menu mobile */
+    display: block; /* Tampilkan ikon hamburger */
+    z-index: 1001;
   }
 
-  /* 2. Sembunyikan menu navigasi dan elemen kanan di header */
-  .nav-menu,
-  .nav-right {
-    display: none;
-  }
-
-  /* 3. Atur posisi dan tampilan untuk menu mobile */
   .nav-group-right {
     position: fixed;
     top: 0;
@@ -133,58 +32,73 @@
     z-index: 1000;
   }
 
-  /* 4. Tampilkan menu saat kelas '.active' ditambahkan oleh JavaScript */
   .nav-group-right.active {
     right: 0;
   }
 
-  /* 5. Atur ulang tampilan menu dan link di dalamnya */
   .nav-group-right .nav-menu {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 2rem;
   }
-
   .nav-group-right .nav-menu a {
     font-size: 1.2rem;
   }
 
-  /* 6. Atur ulang tampilan elemen kanan (search & language) di menu mobile */
-  .nav-group-right .nav-right {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
+  /* Hero Slider */
+  .hero-section {
+    padding: 20px 20px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 80vh;
   }
-
-  /* Tambahan Aturan Responsif Lainnya */
   .hero-content h1 {
     font-size: 2.5rem;
     line-height: 1.2;
   }
-
-  .hero-content p,
-  .hero-content h4 {
+  .hero-content p {
     font-size: 1rem;
   }
-
   .hero-button {
-    padding: 8px 24px;
-    font-size: 0.9rem;
-    bottom: 60px;
+    position: static;
+    margin-top: 20px;
+    padding: 10px 25px;
+  }
+  .pagination {
+    bottom: 20px;
+    gap: 15px;
   }
 
-  .stats-grid {
-    flex-direction: column;
-    gap: 20px;
+  /* Stats Section */
+  .stats-section {
+    padding: 40px 15px;
   }
-  .stat-item .number {
+  .stats-container {
+    grid-template-columns: 1fr; /* 1 kolom */
+    gap: 25px;
+    padding: 20px;
+  }
+  .stat-box1,
+  .stat-box {
+    text-align: center; /* Semua rata tengah */
+  }
+  .stat-box1 p {
+    font-size: 20px;
+  }
+  .stat-box1 span {
+    font-size: 16px;
+  }
+  .stat-box .number {
     font-size: 40px;
   }
-  .stat-item .label {
-    font-size: 14px;
-  }
 
+  /* Tentang Kami */
+  .hero-section2 {
+    padding: 60px 20px;
+    height: auto;
+  }
   .hero-content2 h1 {
     font-size: 2rem;
   }
@@ -192,71 +106,477 @@
     font-size: 1rem;
   }
 
-  .certifications-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .right-column .info-box {
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
-/* Smartphone Kecil */
-@media (max-width: 576px) {
-  .navbar {
-    height: 80px;
-  }
-  .logo img {
-    height: 50px;
-  }
-
-  .hero-section {
+  /* Features Section */
+  .features-section {
     padding: 20px;
   }
-
-  .hero-content h1 {
+  .features-section .section-title {
     font-size: 2rem;
+    margin-bottom: 40px;
+  }
+  .features-grid {
+    grid-template-columns: 1fr; /* 1 kolom */
+    gap: 40px;
   }
 
-  .title-background,
-  .title-background2 {
-    font-size: 32px;
+  /* Alur Maklon */
+  .alur-maklon {
+    padding: 20px;
+  }
+  .steps-container,
+  .steps-container.reversed {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    margin-top: 20px;
+  }
+  .step {
+    width: 80%;
+  }
+  .step:not(:last-child)::after,
+  .steps-container.reversed .step:not(:last-child)::before {
+    content: "▼"; /* Ubah panah menjadi ke bawah */
+    top: auto;
+    bottom: -30px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
-  .company-info .company-name {
-    font-size: 22px;
+  /* Wujudkan Brand Section */
+  .wujudkan-brand .hero-container {
+    flex-direction: column;
+    padding: 20px;
+    gap: 30px;
+    text-align: center;
   }
-  .company-info .trust-text {
-    font-size: 18px;
+  .text-column h1 {
+    font-size: 2.2rem;
   }
-
-  .section-title,
-  .main-title,
-  .section-title2,
-  .kontak-body .main-title {
-    font-size: 1.8rem;
-    margin-bottom: 30px;
-  }
-
-  .text-column h1,
-  .get-in-touch-title {
-    font-size: 2rem;
-  }
-
   .text-column p {
     font-size: 1rem;
   }
 
-  .value-grid {
-    grid-template-columns: 1fr;
+  /* Sertifikasi Section */
+  .sertifikasi-eshbi {
+    padding: 40px 20px;
+    min-height: auto;
+  }
+  .certifications-grid {
+    grid-template-columns: 1fr; /* 1 kolom */
+    gap: 30px;
+  }
+  .certification-item p {
+    max-width: 100%;
   }
 
-  .footer-content {
-    padding: 0 20px 20px 20px;
+  /* Tombol Scroll & WhatsApp */
+  #scrollTopBtn {
+    left: 20px;
+    width: 35px;
+    height: 35px;
+    padding: 12px;
+  }
+  .floating-whatsapp {
+    right: 20px;
+    width: 35px;
+    height: 35px;
+    font-size: 28px;
+  }
+}
+
+/* =============================================== */
+/* TAMPILAN TABLET (768px - 1023px) */
+/* =============================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Penyesuaian Global */
+  body {
+    font-size: 15px;
   }
 
-  .map-container iframe {
-    height: 300px;
+  /* Navbar */
+  .navbar {
+    padding: 0 1.5rem;
+  }
+  .nav-menu {
+    gap: 1.5rem;
+  }
+  .nav-group-right {
+    gap: 1rem;
+  }
+
+  /* Hero */
+  .hero-content h1 {
+    font-size: 3.5rem;
+  }
+
+  /* Stats Section */
+  .stats-section {
+    padding: 60px 20px;
+  }
+  .stats-container {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 20px;
+    padding: 20px 30px;
+  }
+  .stat-box1 {
+    grid-column: 1 / -1; /* Kolom pertama mengambil lebar penuh */
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  .stat-box {
+    text-align: center;
+  }
+
+  /* Features Section */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 30px;
+  }
+
+  /* Alur Maklon */
+  .alur-maklon {
+    padding: 30px;
+  }
+  .steps-container {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px 20px;
+  }
+  .step {
+    width: 45%;
+  }
+  .step:not(:last-child)::after,
+  .steps-container.reversed .step:not(:last-child)::before {
+    content: ""; /* Sembunyikan panah di tablet */
+  }
+
+  /* Wujudkan Brand Section */
+  .wujudkan-brand .hero-container {
+    flex-direction: column;
+    text-align: center;
+    gap: 30px;
+  }
+  .text-column {
+    flex-basis: 100%;
+  }
+
+  /* Sertifikasi Section */
+  .sertifikasi-eshbi {
+    padding: 60px 20px;
+  }
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr); /* 2 kolom */
+    gap: 25px;
+  }
+}
+
+/* =============================================== */
+/* TAMPILAN DESKTOP (1024px ke atas) */
+/* =============================================== */
+@media (min-width: 1024px) {
+  /* Sebagian besar gaya sudah didefinisikan di styles.css */
+  /* Di sini kita bisa menambahkan override atau penyesuaian jika perlu */
+
+  /* Alur Maklon - Memastikan panah terlihat dengan baik */
+  .step:not(:last-child)::after {
+    transform: translateX(350%);
+  }
+
+  .steps-container.reversed .step:not(:last-child)::before {
+    right: -35px;
+  }
+}
+
+/* =============================================== */
+/* MEDIA QUERIES UNTUK HALAMAN BLOG (blog.html)  */
+/* =============================================== */
+
+/* =============================================== */
+/* TAMPILAN PONSEL (Hingga 767px) */
+/* =============================================== */
+@media (max-width: 767px) {
+  /* Header Blog */
+  .blog-header h1 {
+    font-size: 2rem; /* Perkecil ukuran judul utama */
+  }
+  .blog-header p {
+    font-size: 0.95rem; /* Perkecil ukuran sub-judul */
+  }
+
+  /* Slider di Halaman Blog */
+  .blog-slider-container {
+    width: 100%; /* Lebar penuh tanpa margin */
+    border-radius: 0;
+    aspect-ratio: 4 / 3; /* Sesuaikan rasio agar tidak terlalu tinggi */
+  }
+
+  /* Grid Artikel Utama */
+  .article-grid {
+    grid-template-columns: 1fr; /* Susun artikel menjadi 1 kolom */
+    padding: 1rem;
+    gap: 1.2rem;
+  }
+
+  /* Konten Kartu Artikel */
+  .card-title {
+    font-size: 1.1rem;
+  }
+
+  /* Bagian Populer */
+  .popular-section {
+    padding: 2.5rem 1rem; /* Kurangi padding */
+  }
+
+  /* Grid Konten Populer (Artikel & Hastag) */
+  .popular-content-grid {
+    grid-template-columns: 1fr; /* Susun menjadi 1 kolom */
+    gap: 3rem; /* Beri jarak antar bagian */
+  }
+
+  /* Wrapper untuk daftar artikel populer */
+  .popular-articles-wrapper {
+    grid-template-columns: 1fr; /* Susun menjadi 1 kolom juga */
+    gap: 1.5rem;
+  }
+
+  .section-heading {
+    font-size: 1.6rem; /* Perkecil judul bagian */
+  }
+
+  /* Pagination (Navigasi Halaman) */
+  .pagination-container {
+    flex-wrap: wrap; /* Agar nomor halaman bisa turun ke baris baru */
+    justify-content: center;
+    gap: 0.3rem;
+  }
+}
+
+/* =============================================== */
+/* TAMPILAN TABLET (768px - 1023px) */
+/* =============================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Grid Artikel Utama sudah 2 kolom (default), tidak perlu diubah */
+  .article-grid {
+    padding: 1.5rem;
+    max-width: 100%;
+  }
+
+  /* Bagian Populer */
+  .popular-section {
+    padding: 3rem 1.5rem;
+  }
+
+  /* Grid Konten Populer (Artikel & Hastag) */
+  .popular-content-grid {
+    grid-template-columns: 1fr; /* Tetap 1 kolom agar tidak sempit */
+    gap: 3.5rem;
+    max-width: 700px; /* Batasi lebar agar mudah dibaca */
+    margin: 0 auto;
+  }
+
+  /* Daftar artikel populer di dalamnya tetap 2 kolom (default) */
+}
+
+/* =============================================== */
+/* TAMPILAN DESKTOP (1024px ke atas) */
+/* =============================================== */
+@media (min-width: 1024px) {
+  /* Semua gaya sudah diatur di styles.css */
+  /* Kode di sini hanya untuk memastikan konsistensi jika ada override */
+  .article-grid {
+    padding: 2rem;
+  }
+
+  .popular-section {
+    padding: 3rem 2rem;
+  }
+}
+
+/* =============================================== */
+/* MEDIA QUERIES UNTUK HALAMAN PROFIL (profile.html) */
+/* =============================================== */
+
+/* =============================================== */
+/* TAMPILAN PONSEL (Hingga 767px) */
+/* =============================================== */
+@media (max-width: 767px) {
+  /* Bagian "Tentang Kami" */
+  .about-us-section {
+    justify-content: center; /* Pusatkan konten */
+    text-align: center;
+    padding: 40px 20px;
+    min-height: auto;
+  }
+  .about-us-section .hero-content1 {
+    padding: 20px;
+    background-color: rgba(
+      255,
+      255,
+      255,
+      0.8
+    ); /* Tambah latar belakang agar terbaca */
+  }
+  .about-us-section .title {
+    font-size: 1.8rem;
+  }
+  .about-us-section .description {
+    font-size: 0.9rem;
+  }
+
+  /* Bagian Visi & Misi */
+  .profile-body {
+    padding: 2rem 1rem;
+  }
+  .mission-grid {
+    grid-template-columns: 1fr; /* Misi menjadi 1 kolom */
+    gap: 2rem;
+  }
+  .vision-text {
+    font-size: 1.1rem;
+  }
+
+  /* Bagian Value */
+  .value-body {
+    padding: 2rem 1rem;
+  }
+  .value-section .section-title2 {
+    font-size: 2rem;
+  }
+
+  /* Bagian Statistik */
+  .stats-section {
+    padding: 40px 15px;
+  }
+  .stats-section .stats-grid {
+    grid-template-columns: 1fr; /* Statistik menjadi 1 kolom */
+    gap: 25px;
+  }
+  .stats-section .stat-item .number {
+    font-size: 40px;
+  }
+
+  /* Bagian Sertifikasi */
+  .sertifikasi-eshbi {
+    min-height: auto; /* Hapus tinggi minimum */
+    padding-bottom: 40px;
+  }
+  .certifications-grid {
+    grid-template-columns: repeat(2, 1fr); /* Sertifikasi menjadi 2 kolom */
+    gap: 15px;
+  }
+  .certification-item img {
+    height: 80px; /* Perkecil logo sertifikasi */
+  }
+  .certification-item h3 {
+    font-size: 1.2em;
+  }
+}
+
+/* =============================================== */
+/* TAMPILAN TABLET (768px - 1023px) */
+/* =============================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  /* Bagian "Tentang Kami" */
+  .about-us-section {
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Misi sudah 2 kolom (default), tidak perlu diubah */
+  .mission-grid {
+    gap: 2rem 3rem;
+  }
+
+  /* Statistik sudah 3 kolom (default), tidak perlu diubah */
+
+  /* Sertifikasi */
+  .certifications-grid {
+    grid-template-columns: repeat(
+      2,
+      1fr
+    ); /* Tetap 2 kolom agar tidak terlalu kecil */
+    max-width: 600px;
+    margin: 0 auto;
+  }
+}
+
+/* =============================================== */
+/* MEDIA QUERIES UNTUK HALAMAN KONTAK (kontak.html) */
+/* =============================================== */
+
+/* =============================================== */
+/* TAMPILAN PONSEL (Hingga 767px) */
+/* =============================================== */
+@media (max-width: 767px) {
+  .kontak-body {
+    padding: 40px 15px; /* Kurangi padding */
+    min-height: auto;
+  }
+
+  .kontak-body .main-title {
+    font-size: 2rem; /* Perkecil judul */
+  }
+
+  .kontak-body .subtitle {
+    font-size: 0.95rem;
+    margin-bottom: 40px; /* Kurangi jarak bawah */
+  }
+
+  /* Ubah layout utama menjadi vertikal */
+  .content-wrapper {
+    flex-direction: column; /* Susun menjadi 1 kolom */
+    gap: 40px; /* Beri jarak antar kolom */
+  }
+
+  .left-column {
+    text-align: center; /* Pusatkan teks di kolom kiri */
+    padding-right: 0;
+  }
+
+  .get-in-touch-title {
+    font-size: 2.2rem;
+  }
+
+  /* Atur lebar info-box menjadi penuh */
+  .info-box {
+    width: 100%; /* Setiap kotak info mengambil lebar penuh */
+    text-align: center;
+  }
+
+  .social-media-icons {
+    justify-content: center; /* Pusatkan ikon media sosial */
+  }
+}
+
+/* =============================================== */
+/* TAMPILAN TABLET (768px - 1023px) */
+/* =============================================== */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .kontak-body {
+    padding: 60px 20px;
+  }
+
+  /* Tetap pertahankan layout vertikal untuk kolom utama */
+  .content-wrapper {
+    flex-direction: column;
+    gap: 40px;
+  }
+
+  .left-column {
+    max-width: 600px;
+    margin: 0 auto; /* Pusatkan kolom kiri */
+    text-align: center; /* Pusatkan teksnya juga */
+    padding-right: 0;
+  }
+
+  .right-column {
+    max-width: 700px;
+    margin: 0 auto; /* Pusatkan kolom kanan */
+    width: 100%;
+  }
+
+  /* Info box tetap 2 kolom (sesuai default style) */
+  .info-box {
+    width: calc(50% - 20px); /* Sesuaikan kalkulasi jika gap berubah */
   }
 }

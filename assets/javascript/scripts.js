@@ -1,100 +1,171 @@
 /**
- * Menjalankan semua skrip utama setelah konten halaman (DOM) selesai dimuat.
- * Cukup satu event listener 'DOMContentLoaded' untuk seluruh skrip.
+ * =================================================================
+ * SCRIPT UTAMA (FINAL DENGAN NAVIGASI DINAMIS & MULTI-BAHASA)
+ * =================================================================
  */
-document.addEventListener("DOMContentLoaded", function () {
-  // =================================================================
-  // BAGIAN 1: PEMUATAN KOMPONEN HEADER & FOOTER
-  // =================================================================
-
+document.addEventListener("DOMContentLoaded", () => {
   /**
-   * Memuat konten HTML dari file lain ke dalam elemen tertentu.
-   * @param {string} url - Path ke file HTML komponen.
-   * @param {string} elementId - ID dari elemen placeholder.
-   * @returns {Promise} - Promise yang selesai setelah konten dimuat.
+   * Memuat konten HTML dari file lain (header/footer).
    */
-  const loadHTML = (url, elementId) => {
-    return fetch(url)
-      .then((response) => {
-        if (!response.ok)
-          throw new Error(`Gagal memuat ${url}: ${response.statusText}`);
-        return response.text();
-      })
-      .then((data) => {
-        const element = document.getElementById(elementId);
-        if (element) element.innerHTML = data;
-        else console.error(`Elemen dengan ID '${elementId}' tidak ditemukan.`);
-      })
-      .catch((error) => console.error("Error saat memuat HTML:", error));
+  const loadHTML = async (url, elementId) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`Gagal memuat ${url}: ${response.statusText}`);
+      }
+      const data = await response.text();
+      const element = document.getElementById(elementId);
+      if (element) {
+        element.innerHTML = data;
+      } else {
+        console.error(`Elemen dengan ID '${elementId}' tidak ditemukan.`);
+      }
+    } catch (error) {
+      console.error("Error saat memuat HTML:", error);
+      throw error;
+    }
   };
 
   /**
-   * Mengatur menu hamburger, termasuk event listener-nya.
-   * Fungsi ini harus dipanggil SETELAH header dimuat.
+   * Mengatur menu hamburger, termasuk logika "click outside to close".
    */
   const setupHamburger = () => {
     const hamburger = document.querySelector(".hamburger");
     const navGroup = document.querySelector(".nav-group-right");
     if (!hamburger || !navGroup) return;
 
-    hamburger.addEventListener("click", () => {
+    hamburger.addEventListener("click", (event) => {
+      event.stopPropagation();
       navGroup.classList.toggle("active");
       hamburger.classList.toggle("active");
     });
 
-    // Menutup menu saat link di-klik (penting untuk mobile).
-    const navLinks = navGroup.querySelectorAll(".nav-menu a");
-    navLinks.forEach((link) => {
-      link.addEventListener("click", () => {
-        navGroup.classList.remove("active");
-        hamburger.classList.remove("active");
+    document.addEventListener("click", (event) => {
+      if (navGroup.classList.contains("active")) {
+        const isClickInsideMenu = navGroup.contains(event.target);
+        const isClickOnHamburger = hamburger.contains(event.target);
+
+        if (!isClickInsideMenu && !isClickOnHamburger) {
+          navGroup.classList.remove("active");
+          hamburger.classList.remove("active");
+        }
+      }
+    });
+  };
+
+  /**
+   * FUNGSI BARU: Mengatur semua link navigasi untuk dikontrol oleh JS.
+   * Ini adalah solusi untuk masalah path di sub-folder.
+   */
+  const setupDynamicNavigation = () => {
+    const links = document.querySelectorAll('a[data-page]');
+    const isEnglish = window.location.pathname.startsWith('/en/');
+    const langPrefix = isEnglish ? '/en/' : '/';
+
+    links.forEach(link => {
+      link.addEventListener('click', (event) => {
+        event.preventDefault(); // Mencegah link default berfungsi
+        const page = link.dataset.page; // Ambil tujuan dari atribut data-page
+        if (page) {
+          window.location.href = langPrefix + page; // Arahkan ke URL yang benar
+        }
       });
     });
   };
 
   /**
-   * Menandai link navigasi yang aktif berdasarkan halaman saat ini.
-   * Fungsi ini harus dipanggil SETELAH header dimuat.
+   * FUNGSI DIPERBARUI: Menandai link aktif berdasarkan data-page.
    */
   const setActiveLink = () => {
-    // Mengambil path URL saat ini, contoh: "/index.html" atau "/tentang.html"
-    let currentPagePath = window.location.pathname;
+    const currentPath = window.location.pathname;
+    const links = document.querySelectorAll('a[data-page]');
 
-    // Jika path-nya hanya "/", anggap itu adalah halaman utama (index.html)
-    if (currentPagePath === "/") {
-      currentPagePath = "/index.html";
-    }
-
-    const navLinks = document.querySelectorAll(".nav-menu a");
-    navLinks.forEach((link) => {
-      // Membandingkan path URL saat ini dengan nilai href pada link secara langsung
-      if (link.getAttribute("href") === currentPagePath) {
-        link.classList.add("active");
+    links.forEach(link => {
+      const pageName = link.dataset.page; // "index.html", "profile.html", dll.
+      
+      // Cek apakah path saat ini diakhiri dengan nama halaman dari data-page
+      if (currentPath.endsWith(pageName)) {
+        link.classList.add('active');
+      }
+      
+      // Kasus khusus untuk halaman utama (root)
+      const isRootPage = currentPath === '/' || currentPath === '/en/';
+      if (isRootPage && pageName === 'index.html') {
+        // Cari link beranda secara spesifik dan aktifkan
+        const homeLink = document.querySelector('a[data-page="index.html"]');
+        if(homeLink) homeLink.classList.add('active');
       }
     });
   };
 
-  // Eksekusi pemuatan komponen
-  // Pertama muat header, SETELAH itu jalankan fungsi yang bergantung padanya.
-  loadHTML("partials/header.html", "header-container").then(() => {
-    setupHamburger();
-    setActiveLink();
-  });
-  // Muat footer secara paralel.
-  loadHTML("partials/footer.html", "footer-container");
+  /**
+   * Mengatur tombol pilihan bahasa (tidak perlu diubah).
+   */
+  const setupLanguageSwitcher = () => {
+    const switcher = document.getElementById("lang-switcher");
+    if (!switcher) return;
 
-  // =================================================================
-  // BAGIAN 2: SLIDER GAMBAR
-  // =================================================================
+    const currentPath = window.location.pathname;
+    const isEnglish = currentPath.startsWith("/en/");
 
+    if (isEnglish) {
+      const newPath = currentPath.replace(/^\/en/, "");
+      switcher.href = newPath === "" ? "/" : newPath;
+      switcher.innerHTML = `
+          <img src="https://upload.wikimedia.org/wikipedia/en/a/ae/Flag_of_the_United_Kingdom.svg" alt="UK Flag"/>
+          <span>ENG</span>
+      `;
+    } else {
+      let destinationPath = "/en" + (currentPath.endsWith('/') ? 'index.html' : currentPath);
+      if (currentPath === "/" || currentPath.endsWith("/index.html")) {
+        destinationPath = "/en/index.html";
+      }
+      switcher.href = destinationPath;
+      switcher.innerHTML = `
+          <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" alt="Indonesian Flag"/>
+          <span>IND</span>
+      `;
+    }
+  };
+
+  /**
+   * FUNGSI DIPERBARUI: Memuat semua komponen dan menjalankan semua skrip.
+   */
+  const initializePartials = async () => {
+    const currentPath = window.location.pathname;
+    const isEnglish = currentPath.startsWith("/en/");
+    const loader = document.getElementById("loader-wrapper");
+
+    const headerFile = isEnglish ? "/partials/header-en.html" : "/partials/header-id.html";
+    const footerFile = isEnglish ? "/partials/footer-en.html" : "/partials/footer-id.html";
+
+    try {
+      await Promise.all([
+        loadHTML(headerFile, "header-container"),
+        loadHTML(footerFile, "footer-container"),
+      ]);
+
+      // Hapus 'updateNavigationLinks' dan panggil fungsi yang baru
+      setupHamburger();
+      setupLanguageSwitcher();
+      setupDynamicNavigation(); // <- INI FUNGSI BARU UNTUK NAVIGASI
+      setActiveLink();       // <- FUNGSI INI SEKARANG BEKERJA DENGAN BENAR
+    } catch (error) {
+      console.error("Salah satu komponen penting gagal dimuat.", error);
+    } finally {
+      if (loader) {
+        loader.classList.add("loader-hidden");
+      }
+    }
+  };
+
+  // Fungsi di bawah ini tidak diubah
   const initSlider = () => {
     const slidesWrapper = document.querySelector(".slides-wrapper");
     const dots = document.querySelectorAll(".dot");
-    if (!slidesWrapper || dots.length === 0) return; // Keluar jika elemen slider tidak ada
-
+    if (!slidesWrapper || dots.length === 0) return;
     let currentSlide = 0;
     let slideInterval;
-
     const goToSlide = (slideIndex) => {
       slidesWrapper.style.transform = `translateX(-${slideIndex * 100}vw)`;
       dots.forEach((dot, index) =>
@@ -102,95 +173,40 @@ document.addEventListener("DOMContentLoaded", function () {
       );
       currentSlide = slideIndex;
     };
-
     const startSlider = () => {
       slideInterval = setInterval(() => {
         currentSlide = (currentSlide + 1) % dots.length;
         goToSlide(currentSlide);
       }, 5000);
     };
-
-    const resetSlider = () => {
-      clearInterval(slideInterval);
-      startSlider();
-    };
-
     dots.forEach((dot, index) => {
       dot.addEventListener("click", () => {
         goToSlide(index);
-        resetSlider();
+        clearInterval(slideInterval);
+        startSlider();
       });
     });
-
-    // Inisialisasi slider
     goToSlide(0);
     startSlider();
   };
 
-  // Panggil fungsi inisialisasi slider
-  initSlider();
-
-  // =================================================================
-  // BAGIAN 3: TOMBOL SCROLL KE ATAS
-  // =================================================================
-
   const initScrollTopButton = () => {
     const scrollTopBtn = document.getElementById("scrollTopBtn");
-    if (!scrollTopBtn) return; // Keluar jika tombol tidak ada
-
-    const handleScroll = () => {
-      const isScrolled =
-        document.body.scrollTop > 100 ||
-        document.documentElement.scrollTop > 100;
+    if (!scrollTopBtn) return;
+    window.addEventListener("scroll", () => {
+      const isScrolled = document.body.scrollTop > 100 || document.documentElement.scrollTop > 100;
       scrollTopBtn.style.display = isScrolled ? "block" : "none";
-    };
-
-    // SOLUSI FINAL: Menggabungkan Animasi Mulus dengan Cek Aksesibilitas
-    const smoothScrollToTop = () => {
-      // Cek apakah pengguna meminta untuk mengurangi gerakan/animasi
-      const prefersReducedMotion = window.matchMedia(
-        "(prefers-reduced-motion: reduce)"
-      ).matches;
-
-      // Jika pengguna meminta untuk mengurangi gerakan, lakukan scroll instan
-      if (prefersReducedMotion) {
-        window.scrollTo(0, 0);
-        return; // Hentikan fungsi di sini
-      }
-
-      // Jika tidak, jalankan animasi yang mulus (kode dari solusi sebelumnya)
-      const startY = window.pageYOffset;
-      const duration = 800;
-      let startTime = null;
-
-      const easeInOutQuad = (t, b, c, d) => {
-        t /= d / 2;
-        if (t < 1) return (c / 2) * t * t + b;
-        t--;
-        return (-c / 2) * (t * (t - 2) - 1) + b;
-      };
-
-      const animation = (currentTime) => {
-        if (startTime === null) {
-          startTime = currentTime;
-        }
-        const timeElapsed = currentTime - startTime;
-        const newY = easeInOutQuad(timeElapsed, startY, -startY, duration);
-        window.scrollTo(0, newY);
-        if (timeElapsed < duration) {
-          requestAnimationFrame(animation);
-        } else {
-          window.scrollTo(0, 0);
-        }
-      };
-
-      requestAnimationFrame(animation);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    scrollTopBtn.addEventListener("click", smoothScrollToTop);
+    });
+    scrollTopBtn.addEventListener("click", () => {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    });
   };
 
-  // Panggil fungsi inisialisasi tombol scroll
+  // --- EKSEKUSI SEMUA FUNGSI ---
+  initializePartials();
+  initSlider();
   initScrollTopButton();
 });

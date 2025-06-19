@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eshbi - Traditional Medicine & Cosmetics Manufacture</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/media.css" />
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/media.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -16,262 +16,6 @@
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
     />
-    <style>
-      .about-us-section {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end; /* Mendorong konten ke kiri */
-        min-height: 86vh;
-        padding: 50px;
-      }
-
-      .hero-content1 {
-        max-width: 550px;
-        /* Latar belakang semi-transparan agar teks mudah dibaca */
-        padding: 40px;
-        border-radius: 8px;
-      }
-
-      .hero-content1 h1 {
-        font-size: 2rem; /* Perbesar sedikit font agar lebih dramatis, sesuaikan jika perlu */
-        font-weight: 550; /* Bold */
-        margin: 0;
-        padding: 0;
-        line-height: 1.18; /* Merapatkan jarak antar baris */
-      }
-
-      #section4 {
-        background-image: url(assets/images/background-hero.jpg);
-        background-size: cover; /* Membuat gambar menutupi seluruh area */
-        background-position: center left;
-      }
-
-      /* Styling untuk nama perusahaan */
-      .about-us-section .title {
-        font-size: 1.5em; /* Ukuran font 24px jika font dasar 16px */
-        font-weight: 700;
-        color: #008000; /* Warna hijau */
-        margin: 0;
-      }
-
-      /* Styling untuk teks deskripsi */
-      .about-us-section .description {
-        font-size: 1em; /* Ukuran font 16px */
-        line-height: 1.6;
-        margin: 20px 0 0 0;
-      }
-
-      .profile-body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 2rem;
-        box-sizing: border-box;
-      }
-
-      .container {
-        max-width: 1000px;
-        width: 100%;
-        text-align: center;
-      }
-
-      /* Section Titles (VISI & MISI) */
-      .section-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        color: #006a4e; /* Dark Green */
-        display: inline-block;
-        position: relative;
-        margin-bottom: 2rem;
-        padding-bottom: 8px;
-      }
-
-      .section-title::after {
-        content: "";
-        position: absolute;
-        bottom: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 100%;
-        height: 3px;
-        background-color: #006a4e; /* Dark Green */
-      }
-
-      /* Vision Section */
-      .vision-section {
-        margin-bottom: 5rem;
-      }
-
-      .vision-text {
-        font-size: 1.25rem;
-        font-weight: 600;
-        color: #555;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-
-      /* Mission Section */
-      .mission-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 3rem 4rem; /* row-gap column-gap */
-      }
-
-      .mission-item {
-        text-align: center; /* Added this line */
-      }
-
-      .mission-item h3 {
-        font-size: 1.2rem;
-        font-weight: 700;
-        color: #222;
-        margin-top: 0;
-        margin-bottom: 0.5rem;
-      }
-
-      .mission-item p {
-        font-size: 1rem;
-        color: #666;
-        line-height: 1.6;
-        margin-top: 0;
-      }
-
-      .value-body {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 2rem 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        min-height: 100vh;
-        margin: 0;
-        padding: 2rem 0;
-      }
-
-      /* Main Container */
-      .value-section {
-        width: 100%;
-        max-width: 1400px;
-        padding: 0 20px;
-        box-sizing: border-box;
-      }
-
-      /* Section Title */
-      .section-title2 {
-        text-align: center;
-        font-size: 2.5rem;
-        font-weight: bold;
-        color: #1d8348; /* Warna hijau dari gambar */
-        margin-bottom: 40px;
-        text-transform: uppercase;
-        letter-spacing: 2px;
-      }
-
-      /* Grid Container for Cards */
-      .value-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-        gap: 25px;
-        justify-content: center;
-      }
-
-      /* Card Styling */
-      .value-card {
-        border-radius: 15px;
-        padding: 30px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        display: flex;
-        flex-direction: column;
-        transition: transform 0.3s ease, box-shadow 0.3s ease;
-      }
-
-      .value-card:hover {
-        transform: translateY(-10px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      }
-
-      /* Card Color Variants */
-      .card-green {
-        background-color: #1d8348; /* Warna hijau utama */
-        color: white;
-      }
-
-      .card-grey {
-        background-color: #f0f2f5; /* Warna abu-abu muda */
-        color: #333;
-      }
-
-      /* Icon Circle */
-      .card-icon {
-        width: 80px;
-        height: 80px;
-        background-color: white;
-        border-radius: 50%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-bottom: 20px;
-        align-self: center; /* Pusatkan ikon di dalam card */
-      }
-
-      .card-icon span {
-        font-size: 40px;
-        font-weight: bold;
-      }
-
-      /* Letter Color inside Icon */
-      .card-green .card-icon span {
-        color: #1d8348;
-      }
-
-      .card-grey .card-icon span {
-        color: #1d8348;
-      }
-
-      /* Card Content */
-      .card-title {
-        font-size: 1.5rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-      }
-
-      .card-description {
-        font-size: 0.95rem;
-        line-height: 1.6;
-        flex-grow: 1; /* Membuat deskripsi mengisi ruang yang tersedia */
-      }
-
-      .card-description ul {
-        padding-left: 20px;
-        margin: 10px 0;
-      }
-
-      .card-quote {
-        font-size: 0.9rem;
-        line-height: 1.5;
-        font-style: italic;
-        margin-top: 20px;
-        padding-top: 15px;
-        border-top: 1px solid rgba(0, 0, 0, 0.1);
-      }
-
-      /* Quote styling for green cards */
-      .card-green .card-quote {
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .card-source {
-        margin-top: 10px;
-        font-size: 0.85rem;
-        font-weight: bold;
-        text-align: right;
-      }
-    </style>
   </head>
   <body>
     <header id="header-container"></header>
@@ -309,28 +53,28 @@
             <h2 class="section-title">MISI</h2>
             <div class="mission-grid">
               <div class="mission-item">
-                <h3>Service Excellent,</h3>
+                <h3>Service Excellent</h3>
                 <p>
                   memberikan layanan dan produk berkualitas, inovatif dengan
                   teknologi dan infrastruktur modern
                 </p>
               </div>
               <div class="mission-item">
-                <h3>Productivity and motivation,</h3>
+                <h3>Productivity and motivation</h3>
                 <p>
                   meningkatkan kesejahteraan dan pengembangan sumber daya
                   manusia dengan lingkungan kerja yang nyaman
                 </p>
               </div>
               <div class="mission-item">
-                <h3>Investment,</h3>
+                <h3>Investment</h3>
                 <p>
                   meningkatkan nilai perusahaan dengan transparansi dan
                   pertumbuhan jangan Panjang
                 </p>
               </div>
               <div class="mission-item">
-                <h3>Inspire,</h3>
+                <h3>Inspire</h3>
                 <p>memberikan pengaruh positif terhadap kebutuhan gaya hidup</p>
               </div>
             </div>
@@ -340,101 +84,38 @@
       <div class="value-body">
         <div class="value-section">
           <h2 class="section-title2">VALUE</h2>
-          <div class="value-grid">
-            <div class="value-card card-green">
-              <div class="card-icon"><span>E</span></div>
-              <h3 class="card-title">Empathy</h3>
-              <div class="card-description">
-                Berusaha memahami sudut pandang orang lain.
-                <ul>
-                  <li>Curiosity (rasa ingin tahu)</li>
-                  <li>Active listening (pendengar aktif)</li>
-                  <li>Open minded (pikiran terbuka)</li>
-                </ul>
-              </div>
-              <p class="card-quote">
-                "..kemudian Kami jadikan kamu berbangsa-bangsa dan
-                bersuku-suku.."
-              </p>
-              <p class="card-source">QS : Al Hujurat : 13</p>
-            </div>
-
-            <div class="value-card card-grey">
-              <div class="card-icon"><span>S</span></div>
-              <h3 class="card-title">Synergy</h3>
-              <p class="card-description">
-                Kerjasama antar pihak saling menghormati bersedia beda pendapat
-                & rencana, jangan egois.
-              </p>
-              <p class="card-quote">
-                "..Dan tolong-menolonglah kamu dalam (mengerjakan kebajikan dan
-                takwa, dan jangan tolong-menolong dalam berbuat dosa dan
-                permusuhan.."
-              </p>
-              <p class="card-source">QS : Al Maidah : 2</p>
-            </div>
-
-            <div class="value-card card-green">
-              <div class="card-icon"><span>H</span></div>
-              <h3 class="card-title">Honesty</h3>
-              <p class="card-description">Kejujuran/ Integrity</p>
-              <p class="card-quote">
-                "..Apabila kamu berbicara, berbicaralah sejujurnya, sekalipun
-                dia kerabatmu dan penuhilah janji Allah. Demikianlah dia
-                memerintahkan kepadamu agar kamu ingat.."
-              </p>
-              <p class="card-source">QS : Al An'am : 152</p>
-            </div>
-
-            <div class="value-card card-grey">
-              <div class="card-icon"><span>B</span></div>
-              <h3 class="card-title">Believe</h3>
-              <p class="card-description">
-                Saling percaya, amanah, right man, right place.
-              </p>
-              <p class="card-quote">
-                "..Wahai orang-orang yang beriman janganlah kamu menghianati
-                Allah dan Rasul dan janganlah kamu menghianati amanah-amanah
-                yang dipercayakan kepadamu sedangkan kamu mengetahui.."
-              </p>
-              <p class="card-source">QS : Al Anfal : 27</p>
-            </div>
-
-            <div class="value-card card-green">
-              <div class="card-icon"><span>I</span></div>
-              <h3 class="card-title">Innovation</h3>
-              <p class="card-description">
-                Inovasi, kreatif, kontinyu, solution.
-              </p>
-              <p class="card-quote">
-                "..Sesungguhnya Allah tidak akan mengubah keadaan suatu kaum
-                sebelum mereka mengubah keadaan mereka sendiri.."
-              </p>
-              <p class="card-source">QS : Ar-Ra'd : 11</p>
-            </div>
+          <div>
+            <img
+              src="/assets/images/makna-eshbi.jpg"
+              alt="Infografis Nilai-nilai Perusahaan ESHBI"
+              class="makna-eshbi"
+            />
           </div>
         </div>
       </div>
       <section class="stats-section">
         <div class="stats-container">
-          <div class="company-info">
-            <h3 class="company-name">PT. Eshbi Putra Indonesia</h3>
-            <p class="trust-text">Telah Dipercayai Lebih Dari</p>
+          
+          <div class="stat-box1">
+            <p>PT. Eshbi Putra Indonesia</p>
+            <span>Telah Dipercayai Lebih Dari</span>
           </div>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <span class="number">123+</span>
-              <span class="label">Brand Partner</span>
-            </div>
-            <div class="stat-item">
-              <span class="number">99+</span>
-              <span class="label">Kepuasan Pelanggan</span>
-            </div>
-            <div class="stat-item">
-              <span class="number">999K+</span>
-              <span class="label">Distribusi Produk</span>
-            </div>
+      
+          <div class="stat-box">
+            <span class="number">123+</span>
+            <span class="label">Brand Partner</span>
           </div>
+      
+          <div class="stat-box">
+            <span class="number">99+</span>
+            <span class="label">Kepuasan Pelanggan</span>
+          </div>
+      
+          <div class="stat-box">
+            <span class="number">999K+</span>
+            <span class="label">Distribusi Produk</span>
+          </div>
+      
         </div>
       </section>
       <div class="sertifikasi-eshbi">
@@ -443,7 +124,7 @@
 
           <div class="certifications-grid">
             <div class="certification-item">
-              <img src="assets/images/logo-halal.png" alt="Logo Halal MUI" />
+              <img src="/assets/images/logo-halal.png" alt="Logo Halal MUI" />
               <h3>MUI</h3>
               <p>
                 Telah memenuhi uji standar halal dari Majelis Ulama Indonesia
@@ -451,7 +132,7 @@
             </div>
 
             <div class="certification-item">
-              <img src="assets/images/LOGO-BPOM.png" alt="Logo Badan POM" />
+              <img src="/assets/images/LOGO-BPOM.png" alt="Logo Badan POM" />
               <h3>Badan POM</h3>
               <p>
                 Telah memenuhi ijin edar dari Badan Pengawasan Obat dan Makanan
@@ -460,7 +141,7 @@
 
             <div class="certification-item">
               <img
-                src="assets/images/LOGO-CPKB.png"
+                src="/assets/images/LOGO-CPKB.png"
                 alt="Logo Sertifikat CPKB"
               />
               <h3>CPKB</h3>
@@ -469,7 +150,7 @@
 
             <div class="certification-item">
               <img
-                src="assets/images/logo-cpotb.png"
+                src="/assets/images/logo-cpotb.png"
                 alt="Logo Sertifikat CPOTB"
               />
               <h3>CPOTB</h3>
@@ -489,10 +170,10 @@
       target="_blank"
     >
       <img
-        src="assets/images/whatsapp-icon.png"
+        src="/assets/images/whatsapp-icon.png"
         alt="Hubungi Kami di WhatsApp"
       />
     </a>
-    <script src="assets/javascript/scripts.js"></script>
+    <script src="/assets/javascript/scripts.js"></script>
   </body>
 </html>

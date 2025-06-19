@@ -4,152 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - Eshbi</title>
-    <link rel="stylesheet" href="assets/css/styles.css" />
-    <link rel="stylesheet" href="assets/css/media.css" />
-    <style>
-      /* Gaya spesifik untuk halaman Blog */
-      .blog-header {
-        text-align: center;
-        padding: 50px 20px 30px 20px;
-        background-color: #f4f4f4;
-      }
-      .blog-header h1 {
-        color: #0a6847;
-        font-size: 2.8rem;
-        font-weight: 700;
-        margin-bottom: 10px;
-      }
-      .blog-header p {
-        font-size: 1.1rem;
-        color: #555;
-        max-width: 600px;
-        margin: 0 auto;
-      }
-      /* Mengatur tinggi slider agar tidak fullscreen */
-      .blog-slider-container {
-        position: relative;
-        width: 90%;
-        max-width: 1200px;
-        margin: 0 auto;
-        /* HAPUS 'height' DAN GANTI DENGAN 'aspect-ratio' */
-        aspect-ratio: 16 / 9; /*<-- SOLUSINYA. Menjaga rasio 16:9 */
-        overflow: hidden;
-        border-radius: 20px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-      }
-      .blog-slider-container .hero-section {
-        height: 100%; /* Membuat slide mengisi container */
-      }
-      .blog-slider-container .pagination {
-        bottom: 20px; /* Posisi pagination lebih dekat */
-      }
-      /* Kontainer untuk search bar */
-      .search-container {
-        display: flex;
-        justify-content: center;
-        padding: 40px 20px;
-      }
-      .search-box {
-        display: flex;
-        width: 100%;
-        max-width: 500px;
-        border: 1px solid #ddd;
-        border-radius: 50px;
-        overflow: hidden;
-      }
-      .search-box input {
-        border: none;
-        padding: 15px 25px;
-        font-size: 1rem;
-        width: 100%;
-        outline: none;
-      }
-      .search-box button {
-        border: none;
-        background-color: #2b8800;
-        color: white;
-        padding: 0 25px;
-        cursor: pointer;
-        font-size: 1.2rem;
-        transition: background-color 0.3s ease;
-      }
-      .search-box button:hover {
-        background-color: #0a6847;
-      }
-      /* ======================================================= */
-      /* UPDATE GAYA KARTU ARTIKEL SESUAI DESAIN BARU            */
-      /* ======================================================= */
-
-      /* Jadikan wadah gambar sebagai referensi untuk posisi overlay */
-      .card-image-container {
-        position: relative; /* Ini PENTING untuk overlay */
-        width: 100%;
-      }
-
-      .article-card img {
-        width: 100%;
-        height: auto;
-        display: block;
-        border-radius: 8px 8px 0 0; /* Memberi lengkungan hanya di sudut atas */
-      }
-
-      /* --- CSS BARU UNTUK OVERLAY TANGGAL --- */
-      .date-overlay {
-        position: absolute; /* Membuatnya melayang di atas gambar */
-        bottom: 10px; /* Jarak 10px dari bawah */
-        right: 10px; /* Jarak 10px dari kanan */
-        background-color: #1e633f; /* Warna hijau dari desain */
-        color: #ffffff;
-        padding: 6px 12px;
-        border-radius: 5px;
-        font-size: 0.8rem;
-        font-weight: 600;
-        z-index: 2; /* Memastikan di atas gambar */
-      }
-      /* ------------------------------------ */
-
-      .card-content {
-        padding: 20px;
-        display: flex;
-        flex-direction: column;
-        flex-grow: 1;
-      }
-
-      .card-title {
-        font-size: 1.3rem; /* Sedikit diperbesar */
-        font-weight: 600;
-        color: #1e633f; /* Warna disamakan dengan overlay */
-        margin: 0 0 10px 0;
-      }
-
-      .card-excerpt {
-        font-size: 0.95rem;
-        color: #666;
-        line-height: 1.6;
-        margin: 0 0 20px 0;
-        flex-grow: 1;
-      }
-
-      /* --- CSS BARU UNTUK LINK "BACA ARTIKEL" --- */
-      .card-read-more {
-        font-size: 0.9rem;
-        font-weight: 600;
-        color: #999;
-        text-decoration: none;
-        transition: color 0.3s ease;
-        align-self: flex-end; /* Memposisikan ke kanan bawah */
-      }
-
-      .card-read-more:hover {
-        color: #1e633f;
-      }
-      /* ----------------------------------------- */
-
-      /* Hapus atau modifikasi .card-button lama jika ada */
-      .card-button {
-        display: none; /* Sembunyikan style tombol lama */
-      }
-    </style>
+    <link rel="stylesheet" href="/assets/css/styles.css" />
+    <link rel="stylesheet" href="/assets/css/media.css" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -177,15 +33,15 @@
         <div class="slides-wrapper">
           <section
             class="hero-section"
-            style="background-image: url(assets/images/background-hero3.jpg)"
+            style="background-image: url(/assets/images/background-hero3.jpg)"
           ></section>
           <section
             class="hero-section"
-            style="background-image: url(assets/images/background-hero.jpg)"
+            style="background-image: url(/assets/images/background-hero.jpg)"
           ></section>
           <section
             class="hero-section"
-            style="background-image: url(assets/images/background-hero2.jpg)"
+            style="background-image: url(/assets/images/background-hero2.jpg)"
           ></section>
         </div>
         <div class="pagination">
@@ -196,54 +52,40 @@
       </div>
 
       <section class="search-container">
-        <div class="search-box">
-          <input type="text" placeholder="Cari Artikel..." />
-          <button type="submit" aria-label="Cari">
+        <form id="search-form" class="search-box">
+          <input id="search-input" type="text" placeholder="Cari Artikel..." />
+          <button id="search-button" type="submit" aria-label="Cari">
             <i class="fa fa-search"></i>
           </button>
+        </form>
+      </section>
+
+      <div id="article-grid-container" class="article-grid">
+        <p>Memuat artikel...</p>
+      </div>
+
+      <section class="popular-section">
+        <nav id="pagination-container" class="pagination-container"></nav>
+
+        <div class="popular-content-grid">
+          <div class="popular-articles">
+            <h2 class="section-heading">BERITA TERPOPULER</h2>
+            <div
+              id="popular-articles-container"
+              class="popular-articles-wrapper"
+            >
+              <p>Memuat berita populer...</p>
+            </div>
+          </div>
+
+          <div class="popular-hashtags">
+            <h2 class="section-heading">HASTAG TERPOPULER</h2>
+            <div id="hashtags-container" class="hashtags-wrapper">
+              <p>Memuat hastag...</p>
+            </div>
+          </div>
         </div>
       </section>
-      <div class="article-grid">
-        <article class="article-card">
-          <div class="card-image-container">
-            <img
-              src="https://via.placeholder.com/400x250/e0e0e0/cccccc?text="
-              alt="Placeholder Gambar Artikel"
-            />
-            <div class="date-overlay">
-              <span>28 Maret 2025</span>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title">Judul Artikel atau Berita</h3>
-            <p class="card-excerpt">
-              Lorem ipsum is a dummy or placeholder text commonly used in
-              graphic design, publishing, and web ...
-            </p>
-            <a href="#" class="card-read-more">Baca Artikel ></a>
-          </div>
-        </article>
-
-        <article class="article-card">
-          <div class="card-image-container">
-            <img
-              src="https://via.placeholder.com/400x250/e0e0e0/cccccc?text="
-              alt="Placeholder Gambar Artikel"
-            />
-            <div class="date-overlay">
-              <span>27 Maret 2025</span>
-            </div>
-          </div>
-          <div class="card-content">
-            <h3 class="card-title">Judul Artikel atau Berita</h3>
-            <p class="card-excerpt">
-              Lorem ipsum is a dummy or placeholder text commonly used in
-              graphic design, publishing, and web ...
-            </p>
-            <a href="#" class="card-read-more">Baca Artikel ></a>
-          </div>
-        </article>
-      </div>
     </main>
 
     <footer id="footer-container"></footer>
@@ -255,11 +97,12 @@
       target="_blank"
     >
       <img
-        src="assets/images/whatsapp-icon.png"
+        src="/assets/images/whatsapp-icon.png"
         alt="Hubungi Kami di WhatsApp"
       />
     </a>
 
-    <script src="assets/javascript/scripts.js"></script>
+    <script src="/assets/javascript/scripts.js"></script>
+    <script src="/assets/javascript/scripts-wp.js"></script>
   </body>
 </html>
