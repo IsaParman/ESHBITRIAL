@@ -185,14 +185,14 @@ ul {
   box-sizing: border-box;
 }
 #section1 {
-  background-image: url(assets/images/background-hero.jpg);
+  background-image: url(../images/background-hero.jpg);
 }
 #section2 {
-  background-image: url(assets/images/background-hero2.jpg);
+  background-image: url(../images/background-hero2.jpg);
   background-position: top center;
 }
 #section3 {
-  background-image: url(assets/images/background-hero3.jpg);
+  background-image: url(../images/background-hero3.jpg);
   background-position: top center;
 }
 .hero-section::before {
@@ -336,7 +336,7 @@ ul {
   margin: 40px auto;
 }
 .hero-section2 {
-  background-image: url(assets/images/tentang-kami.jpg);
+  background-image: url(../images/tentang-kami.jpg);
   height: 70vh;
   background-size: cover;
   background-position: center;
@@ -981,7 +981,7 @@ ul {
   justify-content: flex-end;
   min-height: 86vh;
   padding: 50px;
-  background-image: url(assets/images/background-hero.jpg);
+  background-image: url(../images/background-hero.jpg);
   background-size: cover;
   background-position: center left;
 }

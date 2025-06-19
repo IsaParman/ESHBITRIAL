@@ -136,28 +136,32 @@ document.addEventListener("DOMContentLoaded", () => {
     const isEnglish = currentPath.startsWith("/en/");
     const loader = document.getElementById("loader-wrapper");
 
-    const headerFile = isEnglish ? "/partials/header-en.html" : "/partials/header-id.html";
-    const footerFile = isEnglish ? "/partials/footer-en.html" : "/partials/footer-id.html";
+    // --- BAGIAN YANG DIUBAH ---
+    // Tambahkan variabel pathPrefix untuk menentukan apakah perlu "naik level"
+    const pathPrefix = isEnglish ? "../" : "";
+
+    const headerFile = isEnglish ? `${pathPrefix}partials/header-en.html` : `${pathPrefix}partials/header-id.html`;
+    const footerFile = isEnglish ? `${pathPrefix}partials/footer-en.html` : `${pathPrefix}partials/footer-id.html`;
+    // --- AKHIR BAGIAN YANG DIUBAH ---
 
     try {
-      await Promise.all([
-        loadHTML(headerFile, "header-container"),
-        loadHTML(footerFile, "footer-container"),
-      ]);
+        await Promise.all([
+            loadHTML(headerFile, "header-container"),
+            loadHTML(footerFile, "footer-container"),
+        ]);
 
-      // Hapus 'updateNavigationLinks' dan panggil fungsi yang baru
-      setupHamburger();
-      setupLanguageSwitcher();
-      setupDynamicNavigation(); // <- INI FUNGSI BARU UNTUK NAVIGASI
-      setActiveLink();       // <- FUNGSI INI SEKARANG BEKERJA DENGAN BENAR
+        setupHamburger();
+        setupLanguageSwitcher();
+        setupDynamicNavigation();
+        setActiveLink();
     } catch (error) {
-      console.error("Salah satu komponen penting gagal dimuat.", error);
+        console.error("Salah satu komponen penting gagal dimuat.", error);
     } finally {
-      if (loader) {
-        loader.classList.add("loader-hidden");
-      }
+        if (loader) {
+            loader.classList.add("loader-hidden");
+        }
     }
-  };
+};
 
   // Fungsi di bawah ini tidak diubah
   const initSlider = () => {
